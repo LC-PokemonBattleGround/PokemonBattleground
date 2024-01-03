@@ -1,6 +1,6 @@
 # Pokemon Battle ground
 [Projet] - Application Web Spring
-- Créé par Jonathan MARTIN et Simone BARTHE
+- Créé par Jonathan MARTIN et Simon BARTHE
 - Application permettant l'ajout et la création de Pokémons
 - Gestion de combats aléatoire entre Pokémons
 - Serveur disponible sur TOMCAT connecté avec MariaDB ou MySQL (voir la configuration de connexion)
