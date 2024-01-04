@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,53 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import projet.jonathan_simon.pokemon.entity.Pokemon;
 import projet.jonathan_simon.pokemon.service.PokemonService;
 
+
 @Controller
 @RequestMapping("/pokemon")
-public class PokemonController {
-
+public class PokemonBattleController {
+    
     private final PokemonService service;
 
-    public PokemonController(PokemonService service) {
+    public PokemonBattleController(PokemonService service) {
         this.service = service;
     }
-
-    // Page d'accueil de notre site
-    @GetMapping("/home")
-    public String home(Model model) {
-        model.addAttribute("index", service.getPokemons());
-        return "index";
-    }
-
-    // Page de présentation de tous les pokémons en BDD
-    @GetMapping(value = "/pokemons")
-    public String pokemons(Model model) {
-        model.addAttribute("pokemons", service.getPokemons());
-        return "pokeList";
-    }
-
-    // Page de présentation de la création de pokémons en BDD
-    @GetMapping("/pokeForm")
-    public String form(Model model) {
-        Pokemon pokemon = new Pokemon();
-        model.addAttribute("pokemon", pokemon);
-        return "pokeForm";
-    }
-
-    // Page de création de pokémons en BDD
-    @PostMapping("/pokeForm")
-    public String greetingSubmit(Pokemon pokemon) {
-        int pvRan = (int) (Math.abs(Math.random() * ((200 - 20) + 20)));
-        int attackRan = (int) (Math.abs(Math.random() * ((60 - 30) + 30)));
-        int defenseRan = (int) (Math.abs(Math.random() * ((50 - 25) + 25)));
-        int pcCalc = pvRan * ((attackRan + defenseRan) / 2);
-        pokemon.setAttack(attackRan);
-        pokemon.setDefense(defenseRan);
-        pokemon.setPv(pvRan);
-        pokemon.setPc(pcCalc);
-        service.savePokemon(pokemon);
-        return "pokeSucces";
-    }
-
+    
     // Page de combat de pokémons
     @GetMapping("/battle")
     public String formFight(Model model) {
@@ -140,46 +103,6 @@ public class PokemonController {
         } else {
             // Gérer les cas où les Pokémon ne peuvent pas être trouvés
             return "redirect:/erreur"; // rediriger vers une page d'erreur par exemple
-        }
-    }
-
-    // Page de présentation de la suppression de pokémons en BDD
-    @GetMapping("/pokeDelete")
-    public String formDelete(Model model) {
-        Pokemon pokemonId = new Pokemon();
-        // Permet d'afficher dasn le select
-        model.addAttribute("pokemons", service.getPokemons());
-        model.addAttribute("pokemonId", pokemonId);
-        return "pokeDelete";
-    }
-
-    // Page de suppression de pokémons en BDD
-    @PostMapping("/pokeDelete")
-    public String greetingSubmitDelete(@ModelAttribute("pokemonId") Pokemon pokemon) {
-        service.deletePokemon(pokemon.getId());
-        return "pokeDeleteSuccess";
-    }
-
-    // Page d'affichage d'un pokémon en BDD
-    @GetMapping("/{id}")
-    public String getById(@PathVariable("id") Long id, Model model) {
-        Optional<Pokemon> existingItemOptional = service.getPokemonById(id);
-        Pokemon pokemon = new Pokemon();
-        if (existingItemOptional.isPresent()) {
-            pokemon = existingItemOptional.get();
-        }
-        model.addAttribute("pokemon", pokemon);
-        return "pokeDetail";
-    }
-
-    // Page de suppresion d'un pokémon en BDD depuis l'affichage unique du pokémon
-    @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        try {
-            service.deletePokemon(id);
-            return "pokeDeleteSuccess";
-        } catch (Exception e) {
-            return "Error";
         }
     }
 }
