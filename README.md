@@ -22,15 +22,15 @@ Les Points de Vie, d'attaque et de défense sont générés aléatoirement, les 
 
 # Analyse de nos anciens modèles de développement :
 
-1. Problème SRP : Nous avions un controller universel qui s'occupait de l'affichage, de la logique des calculs et de l'implémentation de service
-2. Problème OCP : Notre code ne permettait pas d'être ouvert à l'évolution et fermé à la modification car pas d'implémentation d'interface, de classe abstraiteet seulement une enumération
-3. Problème LSP : Notre projet sera compliqué à faire évolué sans utiliser l'héritage, c'est pourquoi il serait intéressant d'appliquer ce prinipe lors d'un modification qui y est lié
-4. Problème ISP : Nous n'avions pas d'interface pour certains objet, la création de celle ci est donc plus facile à mettre en place en respectant le principe de ségrégation des interfaces
-5. Problème DIP : Pas d'utilisation de composant de haut et bas niveau, il serait préférable de faire attention au respect de ce principe lors de modification futur
+1. Problème <span style="color:lightcoral">__SRP__</span> : Nous avions un controller universel qui s'occupait de l'affichage, de la logique des calculs et de l'implémentation de service
+2. Problème <span style="color:lightcoral">__OCP__</span> : Notre code ne permettait pas d'être ouvert à l'évolution et fermé à la modification car pas d'implémentation d'interface, de classe abstraiteet seulement une enumération
+3. Problème <span style="color:lightcoral">__LSP__</span> : Notre projet sera compliqué à faire évolué sans utiliser l'héritage, c'est pourquoi il serait intéressant d'appliquer ce prinipe lors d'un modification qui y est lié
+4. Problème <span style="color:lightcoral">__ISP__</span> : Nous n'avions pas d'interface pour certains objet, la création de celle ci est donc plus facile à mettre en place en respectant le principe de ségrégation des interfaces
+5. Problème <span style="color:lightcoral">__DIP__</span> : Pas d'utilisation de composant de haut et bas niveau, il serait préférable de faire attention au respect de ce principe lors de modification futur
 
 # Modifications lié au principe SOLID :
-- Solution SRP : Fragmentation du controller en plusieurs controller à responsabilité unique 
-- Solution OCP : Code ouvert à l'évolution et fermé à la modification au travers de l'usage d'énumération et d'interface (PokemonInterface)
-- Solution LSP : Notre projet n'utilise pas l'héritage ni de sous classes donc pas de nécessité d'appliquer le principes LSP (substitution de liskov)
-- Solution ISP : Nos interfaces sont courtes et spécifique à certains besoin, rentrant donc en adéquation avec le principe de ségrégation des interfaces
-- Solution DIP : Notre projet n'utilise pas de composant de haut et bas niveau, donc pas de nécessité du respect du principe DIP (inversion de dépendance)
+- Solution <span style="color:lightgreen">__SRP__</span> : Fragmentation du controller en plusieurs controller à responsabilité unique 
+- Solution <span style="color:lightgreen">__OCP__</span> : Code ouvert à l'évolution et fermé à la modification au travers de l'usage d'énumération et d'interface (PokemonInterface)
+- Solution <span style="color:lightblue">__LSP__</span> : Notre projet n'utilise pas l'héritage ni de sous classes donc pas de nécessité d'appliquer le principes LSP (substitution de liskov)
+- Solution <span style="color:lightgreen">__ISP__</span> : Nos interfaces sont courtes et spécifique à certains besoin, rentrant donc en adéquation avec le principe de ségrégation des interfaces
+- Solution <span style="color:lightblue">__DIP__</span> : Notre projet n'utilise pas de composant de haut et bas niveau, donc pas de nécessité du respect du principe DIP (inversion de dépendance)
