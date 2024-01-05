@@ -20,13 +20,17 @@ Les Points de Vie, d'attaque et de défense sont générés aléatoirement, les 
 5 jours de développements avec l'inclusion d'un cahier des charges à rythme de 6 heures / jours.
 ### Version 1.0, Beta (2.0 en cours de développement ...)
 
-# Modifications lié au principe  :
-- Ajout de nouveau fichiers de classes pour décomposer notre ancien controller qui s'occupait de tout faire
-- Ajout d'un dossier pour stocker des utils à savoir des fonctions logiques qui figuraient aussi dans le controller
-- Changement du nom du controlleur initiale pour le transformer en 1 classe avec 1 seule réponsabilité (avant il s'occupait de gérer l'affichage, le calcul, ...)
-- Création de nouveaux fichiers pour respect du premier principe SOLID SRP (résponsabilité unique) 
-- Pas de code ouvert à l'évolution et fermé à la modification au travers de l'usage d'énumération ou d'interface mais compréhension de l'appliquer au prochain projet
-- Notre projet n'utilise pas l'héritage donc pas de nécessité d'appliquer le principes LSP (substitution de liskov)
-- L'interface existante est restreinte au CRUD de pokemon, donc respect du principe ISP (ségrégation des interfaces)
-- Notre projet n'utilise pas de composant de haut et bas niveau, donc pas de nécessité du respect du principe DIP (inversion de dépendance)
-- Ajout d'une interface pour faciliter les mises à niveau futur des méthodes de la classe pokemon
+# Analyse de nos anciens modèles de développement :
+
+1. Problème SRP : Nous avions un controller universel qui s'occupait de l'affichage, de la logique des calculs et de l'implémentation de service
+2. Problème OCP : Notre code ne permettait pas d'être ouvert à l'évolution et fermé à la modification car pas d'implémentation d'interface, de classe abstraiteet seulement une enumération
+3. Problème LSP : Notre projet sera compliqué à faire évolué sans utiliser l'héritage, c'est pourquoi il serait intéressant d'appliquer ce prinipe lors d'un modification qui y est lié
+4. Problème ISP : Nous n'avions pas d'interface pour certains objet, la création de celle ci est donc plus facile à mettre en place en respectant le principe de ségrégation des interfaces
+5. Problème DIP : Pas d'utilisation de composant de haut et bas niveau, il serait préférable de faire attention au respect de ce principe lors de modification futur
+
+# Modifications lié au principe SOLID :
+- Solution SRP : Fragmentation du controller en plusieurs controller à responsabilité unique 
+- Solution OCP : Code ouvert à l'évolution et fermé à la modification au travers de l'usage d'énumération et d'interface (PokemonInterface)
+- Solution LSP : Notre projet n'utilise pas l'héritage ni de sous classes donc pas de nécessité d'appliquer le principes LSP (substitution de liskov)
+- Solution ISP : Nos interfaces sont courtes et spécifique à certains besoin, rentrant donc en adéquation avec le principe de ségrégation des interfaces
+- Solution DIP : Notre projet n'utilise pas de composant de haut et bas niveau, donc pas de nécessité du respect du principe DIP (inversion de dépendance)
