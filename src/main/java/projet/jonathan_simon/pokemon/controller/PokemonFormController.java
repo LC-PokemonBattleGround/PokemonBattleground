@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import projet.jonathan_simon.pokemon.entity.Pokemon;
-import projet.jonathan_simon.pokemon.logic.Utils;
+import projet.jonathan_simon.pokemon.service.PokemonFormService;
 import projet.jonathan_simon.pokemon.service.PokemonService;
 
 @Controller
@@ -15,11 +15,11 @@ import projet.jonathan_simon.pokemon.service.PokemonService;
 public class PokemonFormController {
 
     private final PokemonService service;
-    private final Utils utils;
+    private final PokemonFormService pokemonFormService;
 
-    public PokemonFormController(PokemonService service, Utils utils) {
+    public PokemonFormController(PokemonService service, PokemonFormService pokemonFormService) {
         this.service = service;
-        this.utils = utils;
+        this.pokemonFormService = pokemonFormService;
     }
     // Page de présentation de la création de pokémons en BDD
     @GetMapping("/pokeForm")
@@ -32,7 +32,7 @@ public class PokemonFormController {
     // Page de création de pokémons en BDD
     @PostMapping("/pokeForm")
     public String greetingSubmit(Pokemon pokemon) {
-        pokemon = utils.createRandomStat(pokemon);
+        pokemon = pokemonFormService.createRandomStat(pokemon);
         service.savePokemon(pokemon);
         return "pokeSucces";
     }

@@ -1,11 +1,8 @@
-package projet.jonathan_simon.pokemon.logic;
-
-import org.springframework.stereotype.Component;
+package projet.jonathan_simon.pokemon.service;
 
 import projet.jonathan_simon.pokemon.entity.Pokemon;
 
-@Component
-public class Utils {
+public class PokemonFormService {
     public Pokemon createRandomStat(Pokemon pokemon){ 
         int pvRan = (int) (Math.abs(Math.random() * ((200 - 20) + 20)));
         int attackRan = (int) (Math.abs(Math.random() * ((60 - 30) + 30)));
@@ -16,5 +13,5 @@ public class Utils {
         pokemon.setPv(pvRan);
         pokemon.setPc(pcCalc);
         return pokemon;
-    }
+    }   
 }

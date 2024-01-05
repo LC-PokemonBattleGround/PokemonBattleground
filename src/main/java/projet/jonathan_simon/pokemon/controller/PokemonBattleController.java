@@ -1,8 +1,6 @@
 package projet.jonathan_simon.pokemon.controller;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import projet.jonathan_simon.pokemon.entity.Pokemon;
+import projet.jonathan_simon.pokemon.service.PokemonBattleService;
 import projet.jonathan_simon.pokemon.service.PokemonService;
 
 
@@ -21,9 +20,11 @@ import projet.jonathan_simon.pokemon.service.PokemonService;
 public class PokemonBattleController {
     
     private final PokemonService service;
+    private final PokemonBattleService pokemonBattleService;
 
-    public PokemonBattleController(PokemonService service) {
+    public PokemonBattleController(PokemonService service, PokemonBattleService pokemonBattleService) {
         this.service = service;
+        this.pokemonBattleService = pokemonBattleService;
     }
     
     // Page de combat de pokémons
@@ -40,11 +41,7 @@ public class PokemonBattleController {
     @PostMapping("/battle")
     public String greetingSubmitFight(@ModelAttribute("pokemonId") Pokemon pokemonA, Model model) {
         Optional<Pokemon> pokemonAttaquant = service.getPokemonById(pokemonA.getId());
-        Random r = new Random();
-        List<Pokemon> pokemonsList = service.getPokemons();
-        int defenserPosition = pokemonsList.size();
-        int position = r.nextInt(defenserPosition);
-        Long defenserId = pokemonsList.get(position).getId();
+        Long defenserId = pokemonBattleService.choseRandomPokemonDefenserId();
         Optional<Pokemon> pokemonDefenseur = service.getPokemonById(defenserId);
         Pokemon pokemonD = new Pokemon();
         if (pokemonAttaquant.isPresent()) {

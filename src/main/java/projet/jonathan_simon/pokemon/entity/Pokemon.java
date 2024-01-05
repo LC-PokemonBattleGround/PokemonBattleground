@@ -101,10 +101,7 @@ public class Pokemon implements Serializable {
         this.defense = defense;
     }
 
-    public Integer Hit(Pokemon pokemon1, Pokemon pokemon2) {
-        int attack = 0;
-        int defense = 0;
-        int pv = 0;
+    private Integer Hit(Pokemon pokemon1, Pokemon pokemon2) {
         double multiply = 1;
         int damage = 0;
         // Pokemon de type : FEU, EAU, PLANTE
@@ -160,10 +157,7 @@ public class Pokemon implements Serializable {
 
     public String Fight(Pokemon pokemon1, Pokemon pokemon2) {
         String action = "";
-        int attack = 0;
-        int health = 0;
         float degats = 0;
-        int pv = 0;
         Pokemon pokemonAttaquant = pokemon1;
         Pokemon pokemonDefenseur = pokemon2;
         if (pokemonAttaquant.Hit(pokemonAttaquant, pokemonDefenseur) == 0
