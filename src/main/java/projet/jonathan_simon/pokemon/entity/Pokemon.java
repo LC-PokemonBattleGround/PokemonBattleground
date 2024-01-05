@@ -11,11 +11,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import projet.jonathan_simon.pokemon.pokemon_interface.PokemonInterface;
 
 @Entity
 @Data
 @Table(name = "pokemon")
-public class Pokemon implements Serializable {
+public class Pokemon implements Serializable, PokemonInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,7 +102,8 @@ public class Pokemon implements Serializable {
         this.defense = defense;
     }
 
-    private Integer Hit(Pokemon pokemon1, Pokemon pokemon2) {
+    @Override
+    public Integer Hit(Pokemon pokemon1, Pokemon pokemon2) {
         double multiply = 1;
         int damage = 0;
         // Pokemon de type : FEU, EAU, PLANTE
@@ -155,6 +157,7 @@ public class Pokemon implements Serializable {
         return damage;
     }
 
+    @Override
     public String Fight(Pokemon pokemon1, Pokemon pokemon2) {
         String action = "";
         float degats = 0;

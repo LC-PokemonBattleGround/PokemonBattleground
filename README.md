@@ -29,6 +29,4 @@ Les Points de Vie, d'attaque et de défense sont générés aléatoirement, les 
 - Notre projet n'utilise pas l'héritage donc pas de nécessité d'appliquer le principes LSP (substitution de liskov)
 - L'interface existante est restreinte au CRUD de pokemon, donc respect du principe ISP (ségrégation des interfaces)
 - Notre projet n'utilise pas de composant de haut et bas niveau, donc pas de nécessité du respect du principe DIP (inversion de dépendance)
-
-TODO Basculer la logique dans les controller vers des services lié.
-"Changement de fonctions standard en Interface et fonction abstraite respectant le principe SOLID d'inversion des dépendances"??
+- Ajout d'une interface pour faciliter les mises à niveau futur des méthodes de la classe pokemon
