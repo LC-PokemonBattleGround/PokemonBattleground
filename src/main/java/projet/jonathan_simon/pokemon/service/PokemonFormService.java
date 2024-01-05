@@ -1,7 +1,12 @@
 package projet.jonathan_simon.pokemon.service;
 
+import org.springframework.stereotype.Service;
+
+import lombok.Data;
 import projet.jonathan_simon.pokemon.entity.Pokemon;
 
+@Data
+@Service
 public class PokemonFormService {
     public Pokemon createRandomStat(Pokemon pokemon){ 
         int pvRan = (int) (Math.abs(Math.random() * ((200 - 20) + 20)));
